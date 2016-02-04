@@ -1,0 +1,95 @@
+Emacs Cheat Sheet
+
+(original version by David Cohen)
+(revised by Bob Rogers)
+
+Home : Emacs tips : Cheat sheet
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+                                                       UNDO: C-_ ("control underscore")
+                                                        Find (or Create) file: C-x C-f
+                                                              Save file: C-x C-s
+                                                             Exit Emacs: C-x C-c
+                                                      Quit (i.e. interrupt) command: C-g
+
+┌──────────────────────────────────────────────────────────────────────────┬─────────────────────────────────────────────────────────────────┐
+│┌──────────────────┬─────────────────────────────────────────────────────┐│                       Cutting and Pasting                       │
+││      Cursor      │                      Operation                      ││C-SPC Mark one end of region                                     │
+││      Motion      ├────────────────┬────────────────────────────────────┤│C-w   Cut (after you Mark and move to other end)                 │
+││                  │      Move      │               Delete               ││M-w   Copy (after you Mark and move to other end)                │
+│├──────────────────┼───────┬────────┼─────────────────┬──────────────────┤│C-y   Yank (paste) most recently killed (cut or copied); will    │
+││      Amount      │forward│backward│     forward     │     backward     ││      also use text currently selected in another application.   │
+│├──────────────────┼───────┼────────┼─────────────────┼──────────────────┤│M-y   Next most recently killed (do C-y first, repeat M-y to     │
+││Characters        │C-f    │C-b     │C-d              │DEL               ││      cycle thru all)                                            │
+│├──────────────────┼───────┼────────┼─────────────────┼──────────────────┤│To make cut/copy/paste behave as it does in other apps, do       │
+││Words             │M-f    │M-b     │M-d              │M-DEL             ││M-x cua-mode, or put                                             │
+│├──────────────────┼───────┼────────┼─────────────────┼──────────────────┤│                                                                 │
+││Lines             │C-n    │C-p     │C-k (to EOL)     │C-SPC C-a C-w     ││    (cua-mode)                                                   │
+│├──────────────────┼───────┼────────┼─────────────────┼──────────────────┤│                                                                 │
+││Sentences         │M-e    │M-a     │M-k              │C-x DEL           ││in your .emacs to enable in every session.                       │
+│├──────────────────┼───────┼────────┼─────────────────┼──────────────────┤│                                                                 │
+││Expressions       │C-M-f  │C-M-b   │C-M-k            │C-M-DEL           ││                                                                 │
+│├──────────────────┼───────┼────────┼─────────────────┴──────────────────┤│                                                                 │
+││Paragraphs        │M-}    │M-{     │(no standard bindings for delete    ││                                                                 │
+││                  │       │        │cmds)                               ││                                                                 │
+│├──────────────────┼───────┼────────┼────────────────────────────────────┤│                                                                 │
+││End/start of line │C-e    │C-a     │(repeat count goes to following     ││                                                                 │
+││                  │       │        │lines)                              ││                                                                 │
+│├──────────────────┼───────┼────────┼────────────────────────────────────┤│                                                                 │
+││End/start of      │M->    │M-<     │(no repeat count)                   ││                                                                 │
+││buffer            │       │        │                                    ││                                                                 │
+│└──────────────────┴───────┴────────┴────────────────────────────────────┘│                                                                 │
+├──────────────────────────────────────────────────────────────────────────┼─────────────────────────────────────────────────────────────────┤
+│                          Scrolling and Windows                           │                        Files and Buffers                        │
+│C-v      Scroll down (toward end of buffer)                               │C-x C-f        Find file (or create if not there); prompts for   │
+│M-v      Scroll up (toward beginning of buffer)                           │               file name                                         │
+│C-M-v    Scroll other window down                                         │C-x C-s        Save file                                         │
+│C-x 1    One window on current buffer                                     │C-x C-w        Write file; prompts for new name                  │
+│C-x 2    Split window vertically                                          │C-x s          Save modified buffers; asks about each            │
+│C-x 3    Split window horizontally                                        │C-x b          Select buffer; prompts for buffer name            │
+│C-x ^    Grow window vertically; prefix is number of lines                │C-x C-b        List buffers; shows in other window               │
+│                          Command-related Stuff                           │C-x k          Kill buffer; prompts for buffer name              │
+│ESC ESC  Get me out of where I am now                                     │                       Searching/Replacing                       │
+│ESC                                                                       │C-s            Incremental search forward; searches as you type  │
+│C-u #    Prefix numeric arg # (digits with optional "-" sign) to next cmd │C-r            Incremental search backward                       │
+│C-g      Stop a command in progress, or quit out of a partially entered   │C-M-s          Regexp search forward (there are differences in   │
+│         command                                                          │               Emacs regexp syntax wrt Perl, etc.)               │
+│                               Getting help                               │C-M-r          Regexp search backward                            │
+│C-h k    Show command documentation; prompts for keystrokes               │M-x            String replace from here to end of buffer; prompts│
+│C-h a    "Command apropos"; prompts for regexp and shows all matching     │replace-string for string and replacement                        │
+│         commands                                                         │RET                                                              │
+│C-h c    Show command name on message line; prompts for keystrokes        │M-x            String replace from here to end of buffer,        │
+│C-h f    Describe function; prompts for command or function name, shows   │query-replace  querying for each occurrence                      │
+│         documentation in other window                                    │RET                                                              │
+│C-h i    Info browser; gives access to online documentation for emacs and │M-x grep RET   Prompts for a grep command, shows hits in a buffer│
+│         more                                                             │C-x `          Visit next grep hit                               │
+│                                                                          │                                                                 │
+│                              Miscellaneous                               │                                                                 │
+│C-_ or C-x u       Undo/redo (a series of these keeps undoing; after doing│                                                                 │
+│                   something else, C-_ or C-x u will undo the undo's)     │                                                                 │
+│C-q                Quoted insert; inserts the next character typed, even  │                                                                 │
+│                   if it is a control or meta character                   │                                                                 │
+│M-x                Flush ^M at end of line                                │                                                                 │
+│shell-strip-ctrl-m                                                        │                                                                 │
+│RET                                                                       │                                                                 │
+│C-z                Suspend/iconify emacs (type "%emacs" in invoking shell │                                                                 │
+│                   to get it back)                                        │                                                                 │
+│C-x C-c            Exit emacs (asks about unsaved buffers and running     │                                                                 │
+│                   programs)                                              │                                                                 │
+└──────────────────────────────────────────────────────────────────────────┴─────────────────────────────────────────────────────────────────┘
+
+Other resources for learning emacs
+
+  • Dave Cohen's original emacs cheat sheet at http://www.primenet.com/~cohen/emacs_cheat.html (dead link), written by an alumnus of the
+    August bootcamp.
+  • Tutorial outline for the tutorial presented at bootcamp on 4-Oct-99.
+  • http://www.pdc.kth.se/training/Tutor/Basics/emacs/emacsis.great (dead link) tutorial page (not hypertext), with a topical command summary
+    at the bottom. This is very dense, and covers a lot of ground.
+  • GNU emacs FAQ. This is also available in emacs itself by typing "C-h F" (note that the "F" must be capitalized). The Web version is
+    hypertext, though it isn't very easy to navigate, and it does have a reference page that points to all kinds of good stuff. The version
+    within emacs is not hypertext, but it's all on one page, and you can use C-s (incremental search) to find things of interest.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Bob Rogers <rogers@rgrjr.dyndns.org>
+$Id: emacs_cheat.html 312 2014-09-07 20:24:18Z rogers $
