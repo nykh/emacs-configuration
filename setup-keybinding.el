@@ -2,7 +2,7 @@
 
 (global-set-key (kbd "M-/") 'hippie-expand)    ; replace debrev expansion algorithm
 (global-set-key (kbd "M-;") 'comment-dwim-2)   ; replace the built in behavior of adding comment
-(global-set-key (kbd "C-\\") 'er/expand-region) ; doesn't work within terminal
+(global-set-key (kbd "C-\\") 'er/expand-region) 
 (global-set-key (kbd "C-s") 'swiper)		; replace default I-search capability with swiper
    
 ;; making window managing easier
@@ -19,3 +19,8 @@
 ;; iedit mode -- instantly edit multipe instances of the same word
 ;; this keybinding only works in window mode
 (global-set-key (kbd "C-;") 'iedit-mode)
+
+;; move-text				     
+;; (global-set-key (kbd "M-<up>") 'move-text-up)
+;; (global-set-key (kbd "M-<down>") 'move-text-down)
+(move-lines-binding)

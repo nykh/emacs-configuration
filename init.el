@@ -24,7 +24,6 @@
  ;; If there is more than one, they won't work right.
  )
 
-
 ;;; autosave setting
 (setq
  backup-by-copying t          ; don't clobber symlinks

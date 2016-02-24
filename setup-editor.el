@@ -11,6 +11,10 @@
 (add-hook 'prog-mode-hook 'linum-on)
 (setq linum-format " %d ")
 (hlinum-activate)      ; also highlight the current line number
+(global-hl-todo-mode)
+
+;; auto indent solution
+(global-aggressive-indent-mode 1)
 
 ;; electric-pair mode: autocomplete (), [], {}
 (electric-pair-mode)
@@ -19,7 +23,7 @@
 (windmove-default-keybindings)
 
 ;; autocomplete
-(auto-complete-mode)
+(global-auto-complete-mode 1)
 
 ;; iedit mode -- instantly edit multipe instances of the same word
 ;; this keybinding only works in window mode
@@ -27,6 +31,9 @@
 
 ;; swiper
 (setq ivy-display-style 'fancy)
+
+;; Move-Text
+(load "~/.emacs.d/my-scripts/move-lines/move-lines.el")
 
 ;;; Language specific setting
 
